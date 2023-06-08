@@ -5,15 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@ViewData["Title"] - Homepage</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
-    <link rel="stylesheet" href="~/Homepage.styles.css" asp-append-version="true"/>
 </head>
-<body>
+<body hx-boost="true">
 <header>
     <nav>
         <ul>
-            <li>
-                <a asp-controller="Home" asp-action="Index">Home</a>
-            </li>
+            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><a asp-controller="Tools" asp-action="Index">Tools</a></li>
         </ul>
     </nav>
 </header>
@@ -22,7 +20,8 @@
     @RenderBody()
 </main>
 
-
+<script src="~/js/htmx.min.js" asp-append-version="true"></script>
+<script src="~/js/_hyperscript.min.js" asp-append-version="true"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
 @await RenderSectionAsync("Scripts", required: false)
 </body>
