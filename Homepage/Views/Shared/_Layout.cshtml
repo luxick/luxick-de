@@ -9,21 +9,26 @@
           historyCacheSize="20"
           indicatorClass="htmx-indicator"
           includeAspNetAntiforgeryToken="true"/>
-    <title>@ViewData["Title"] - Homepage</title>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/classless.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
 </head>
 <body hx-boost="true">
 <header>
-    <nav>
-        <ul>
-            <li>
-                <a asp-controller="Home" asp-action="Index">Home</a>
-            </li>
-            <li>
-                <a asp-controller="Tools" asp-action="Index">Tools</a>
-            </li>
-        </ul>
-    </nav>
+    <section>
+        <h1>@ViewData["Title"]</h1>
+        <p><strong>@ViewData["SubTitle"]</strong></p>
+        <nav class="noprint">
+            <ul>
+                <li>
+                    <a asp-controller="Home" asp-action="Index">Start</a>
+                </li>
+                <li>
+                    <a asp-controller="Tools" asp-action="Index">Tools</a>
+                </li>
+            </ul>
+        </nav>
+    </section>
 </header>
 
 <main role="main">
@@ -34,6 +39,6 @@
 <script src="~/js/_hyperscript.min.js" asp-append-version="true"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
 @Html.HtmxAntiforgeryScript()
-@await RenderSectionAsync("Scripts", required: false)
+@await RenderSectionAsync("Scripts", false)
 </body>
 </html>
