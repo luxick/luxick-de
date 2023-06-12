@@ -1,3 +1,5 @@
+using Htmx.TagHelpers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -20,6 +22,7 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.MapHtmxAntiforgeryScript();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

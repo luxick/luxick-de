@@ -8,4 +8,9 @@ public class ToolsController : Controller
     {
         return View();
     }
+
+    public IActionResult HomebankConvert()
+    {
+        return Ok();
+    }
 }

@@ -1,8 +1,14 @@
-﻿<!DOCTYPE html>
+﻿@using Htmx.TagHelpers
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="htmx-config"
+          historyCacheSize="20"
+          indicatorClass="htmx-indicator"
+          includeAspNetAntiforgeryToken="true"/>
     <title>@ViewData["Title"] - Homepage</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
 </head>
@@ -10,8 +16,12 @@
 <header>
     <nav>
         <ul>
-            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-            <li><a asp-controller="Tools" asp-action="Index">Tools</a></li>
+            <li>
+                <a asp-controller="Home" asp-action="Index">Home</a>
+            </li>
+            <li>
+                <a asp-controller="Tools" asp-action="Index">Tools</a>
+            </li>
         </ul>
     </nav>
 </header>
@@ -23,6 +33,7 @@
 <script src="~/js/htmx.min.js" asp-append-version="true"></script>
 <script src="~/js/_hyperscript.min.js" asp-append-version="true"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
+@Html.HtmxAntiforgeryScript()
 @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
