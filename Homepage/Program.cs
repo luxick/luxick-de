@@ -1,9 +1,12 @@
+using Homepage.Util;
 using Htmx.TagHelpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<HomebankConverter>();
+builder.Services.AddTransient<FileManager>();
 
 var app = builder.Build();
 
@@ -16,15 +19,17 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthorization();
-
 app.MapHtmxAntiforgeryScript();
+
+app.MapControllerRoute(name: "download",
+    pattern: "download/{*filename}",
+    defaults: new { controller = "Download", action = "Index" });
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+app.UseStaticFiles();
 app.Run();
