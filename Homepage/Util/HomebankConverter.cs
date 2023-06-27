@@ -36,8 +36,7 @@ public class HomebankConverter
                     Date = date,
                     Memo = csv.GetField<string>("Verwendungszweck"),
                     Payee = csv.GetField<string>("Beguenstigter/Zahlungspflichtiger"),
-                    Amount = csv.GetField("Betrag") ?? "0",
-                    Info = BestEffortParse(csv)
+                    Amount = csv.GetField("Betrag") ?? "0"
                 };
 
                 records.Add(target);
@@ -58,22 +57,6 @@ public class HomebankConverter
             
             return outputStream.ToArray();
         }
-    }
-
-
-    private static string? BestEffortParse(CsvReader csv)
-    {
-        var memo = csv.GetField<string>("Verwendungszweck");
-        if (memo == null) return null;
-        var payee = csv.GetField<string>("Beguenstigter/Zahlungspflichtiger");
-        // Tilgung auf Baukonto
-        if (memo.Contains("Darl.-Leistung 603005562")) return "Tilgung";
-
-        if (memo.Contains("Gehalt")) return "Gehalt";
-        if (memo.Contains("Abschlag (Strom)")) return "Strom";
-        if (memo.Contains("Beitragsnr. 651565045")) return "GEZ";
-
-        return null;
     }
 }
 
