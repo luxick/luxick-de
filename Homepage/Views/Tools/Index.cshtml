@@ -10,7 +10,8 @@
     <form hx-encoding="multipart/form-data"
           hx-post
           hx-controller="Tools"
-          hx-action="HomebankConvert">
+          hx-action="HomebankConvert"
+          _="on htmx:afterRequest reset() me">
         <input type="file" name="file">
         <button>Convert <img height="14" class="htmx-indicator" src="/img/spinner.svg" alt="loading"/></button>
     </form>
